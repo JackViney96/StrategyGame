@@ -1,0 +1,17 @@
+﻿namespace PCT.Save;
+
+struct Vec2 {
+  x: float;
+  y: float;
+}
+struct Vec3 {
+  x: float;
+  y: float;
+  z: float;
+}
+struct Vec4 {
+  w: float;
+  x: float;
+  y: float;
+  z: float;
+}

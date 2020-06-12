@@ -1,0 +1,11 @@
+﻿include "Types.fbs";
+namespace PCT.Save;
+
+
+table TransformTable {
+  pos:[Vec3];
+  scale:[Vec3];
+  rot:[Vec3];
+}
+
+file_identifier "TST1";
