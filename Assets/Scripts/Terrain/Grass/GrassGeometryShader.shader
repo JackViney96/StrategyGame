@@ -22,6 +22,7 @@ Shader "Grass/Grass Geometry Shader"
         _GrassWidth("GrasWidth", Float) = 0.25
         _WindSpeed("WindSpeed", Float) = 100
         _WindStrength("WindStrength", Float) = 0.05
+        _DiffuseTint("Diffuse Tint", Color) = (1, 1, 1, 1)
 
     }
         SubShader
@@ -35,8 +36,8 @@ Shader "Grass/Grass Geometry Shader"
 
             Pass
             {
-                Tags { "LightMode" = "Deferred" }
-                Cull Off
+                Tags { "LightMode" = "ForwardBase" }
+                Cull OFF
                 CGPROGRAM
 
                 // Vertex-Shader with vert-function
@@ -49,16 +50,44 @@ Shader "Grass/Grass Geometry Shader"
                 // Use shader model 3.0 target, to get nicer looking lighting
                 #pragma target 4.0 // needs to be 4.0 !
                 //#pragma multi_compile_prepassfinal noshadowmask nodynlightmap nodirlightmap nolightmap
+                #pragma multi_compile_fwdbase
                 
                 #include "GrassGeometry.cginc"
 
                 ENDCG
+
             }
+
+            //Pass
+            //{
+            //    Tags { "LightMode" = "ForwardAdd" }
+            //    Cull OFF
+            //    Blend One One
+            //    ZWrite Off
+            //    CGPROGRAM
+
+            //    // Vertex-Shader with vert-function
+            //    #pragma vertex vert
+            //    // Fragment-Shader with frag-function
+            //    #pragma fragment Fragment
+            //    // Geometry-Shader with geom-function 
+            //    #pragma geometry geom
+
+            //    // Use shader model 3.0 target, to get nicer looking lighting
+            //    #pragma target 4.0 // needs to be 4.0 !
+            //    //#pragma multi_compile_prepassfinal noshadowmask nodynlightmap nodirlightmap nolightmap
+            //    #pragma multi_compile_fwdadd
+
+            //    #include "GrassGeometry.cginc"
+
+            //    ENDCG
+
+            //}
 
             Pass
             {
                 Tags { "LightMode" = "ShadowCaster" }
-                Cull Front
+                Cull OFF
                 CGPROGRAM
                 #pragma target 4.0 
                 // Vertex-Shader with vert-function

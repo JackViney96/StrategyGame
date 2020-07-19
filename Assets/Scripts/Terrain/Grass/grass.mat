@@ -107,7 +107,7 @@ Material:
     - _BlendAlpha: 0.5
     - _BranchPhase: 0
     - _BumpScale: 1
-    - _Cutoff: 0.034
+    - _Cutoff: 0.223
     - _DetailNormalMapScale: 1
     - _DetailTransitionDistance: 5
     - _DetailTransitionFalloff: -0.5
@@ -118,9 +118,9 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
-    - _GrassHeight: 0.5
+    - _GrassHeight: 1.5
     - _GrassWidt: 0.25
-    - _GrassWidth: -0.43
+    - _GrassWidth: 0
     - _Metallic: 0
     - _Mode: 1
     - _OcclusionStrength: 1
@@ -136,14 +136,16 @@ Material:
     - _TessValue: 15
     - _UVSec: 0
     - _WindSpeed: 50
-    - _WindStrength: 0.01
+    - _WindStrength: 0.04
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
     - _BackgroundColor: {r: 1, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DiffuseTint: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _ForegroundColor: {r: 0, g: 1, b: 0, a: 1}
+    - _Tint: {r: 1, g: 1, b: 1, a: 1}
     - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
     - _TreeOffset: {r: 0, g: 5, b: 0, a: 0}

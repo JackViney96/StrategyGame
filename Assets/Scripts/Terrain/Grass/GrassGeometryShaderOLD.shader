@@ -332,7 +332,7 @@
                 half shadow = SHADOW_ATTENUATION(IN);
                 fixed4 c = tex2D(_MainTex, IN.uv);
                 clip(c.a - _Cutoff);
-                return c;
+                return c * shadow;
                 //return float4 (IN.diffuseColor.rgb, 1.0);
             }
 
