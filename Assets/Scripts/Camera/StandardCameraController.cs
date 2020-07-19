@@ -1,26 +1,26 @@
-﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.InputSystem;
-using NaughtyAttributes;
-using PCT.Camera;
+﻿using NaughtyAttributes;
 using System;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 [Serializable]
 public class StandardCameraController : MonoBehaviour, PCT.Camera.ICameraController
 {
     [SerializeField]
     private TerrainReferenceHolder referenceHolder;
-    [SerializeField]
-    float cameraSensitivity = 90;
 
     [SerializeField]
-    LayerMask layerMask;
+    private float cameraSensitivity = 90;
+
+    [SerializeField]
+    private LayerMask layerMask;
 
     [MinMaxSlider(0.0f, 1000f)]
     [SerializeField]
-    Vector2 SpeedMinMax;
+    private Vector2 SpeedMinMax;
+
     [SerializeField]
-    float speedStep = 2f;
+    private float speedStep = 2f;
 
     [SerializeField]
     private float verticalSpeedDivisor = 2f;
@@ -44,18 +44,19 @@ public class StandardCameraController : MonoBehaviour, PCT.Camera.ICameraControl
 
     private float _desiredSpeed;
 
+    private float normalSpeed;
+
     private Vector3 deltaPos;
     private Vector3 goalPos;
 
-
-    void Start()
+    private void Start()
     {
         //TODO; de-hardcode?
         desiredSpeed = 50f;
-        #if !UNITY_EDITOR
+#if !UNITY_EDITOR
         Cursor.lockState = CursorLockMode.Confined;
         //Cursor.visible = false;
-        #endif
+#endif
     }
 
     #region Input Methods
@@ -90,12 +91,20 @@ public class StandardCameraController : MonoBehaviour, PCT.Camera.ICameraControl
 
     public void OnCameraFast(InputValue value)
     {
-        throw new System.NotImplementedException();
+        if (value.isPressed)
+        {
+            normalSpeed = desiredSpeed;
+            desiredSpeed = SpeedMinMax.y;
+        }
+        else
+        {
+            desiredSpeed = normalSpeed;
+        }
     }
 
-    #endregion
+    #endregion Input Methods
 
-    void AdjustSpeed(float scrollWheelY)
+    private void AdjustSpeed(float scrollWheelY)
     {
         if (scrollWheelY > 0f)
         {
@@ -118,11 +127,11 @@ public class StandardCameraController : MonoBehaviour, PCT.Camera.ICameraControl
         transform.localRotation *= Quaternion.AngleAxis(rotationY, Vector3.left);
     }
 
-    void Update()
+    private void Update()
     {
         if (referenceHolder == null)
         {
-            return; 
+            return;
         }
 
         AdjustSpeed(scrollWheel.y);
@@ -136,8 +145,6 @@ public class StandardCameraController : MonoBehaviour, PCT.Camera.ICameraControl
     {
         deltaPos = Vector3.zero;
         deltaPos = ((transform.forward * desiredDirectionXZ.y) + (transform.right * desiredDirectionXZ.x)).normalized * Time.deltaTime * desiredSpeed;
-
-
 
         //Perform Checks
         RaycastHit hit;
@@ -153,7 +160,6 @@ public class StandardCameraController : MonoBehaviour, PCT.Camera.ICameraControl
         }
 
         goalPos = transform.position + deltaPos;
-
 
         if (referenceHolder.terrainBounds.Contains(goalPos))
         {

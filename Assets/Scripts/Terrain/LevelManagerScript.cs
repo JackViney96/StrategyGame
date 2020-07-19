@@ -42,6 +42,8 @@ public class LevelManagerScript : MonoBehaviour
         DebugLogConsole.AddCommandInstance("save", "Saves the map", "SaveData", this);
         DebugLogConsole.AddCommandInstance("load", "Loads the map", "LoadData", this);
         DebugLogConsole.AddCommandInstance("navmesh", "Generate Navmesh", "GenerateNavMesh", this);
+
+        LoadData();
     }
 
     public void SaveData()

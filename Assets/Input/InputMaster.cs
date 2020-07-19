@@ -44,7 +44,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""CameraFast"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""22495d75-ef1d-47b3-9743-e4b3021b2be4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",

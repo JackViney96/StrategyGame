@@ -1,47 +1,55 @@
-﻿using UnityEngine;
+﻿using NaughtyAttributes;
+using PCT;
 using System.Collections;
 using System.Collections.Generic;
-using NaughtyAttributes;
-using PCT;
+using UnityEngine;
 
 public class GroundGen : MonoBehaviour
 {
     //private TerrainReferenceHolder terrainReferenceHolder;
 
 #pragma warning disable CS0649 //'Never assigned to'
+
     //Public
     [Header("Core")]
     [SerializeField]
-    GameObject prefab;
+    private GameObject prefab;
 
     [SerializeField]
-    int layer;
+    private int layer;
 
     [HideInInspector]
     public bool generationComplete { get; private set; }
 
-
     [Header("Texture")]
     public Texture2D satelliteImage;
+
     public Texture2D colourBlendMap;
     public Material groundMat;
+
     [Space]
     public float DetailTransitionDistance = 5f;
+
     public float DetailTransitionFalloff = -0.5f;
-    [Range(0,1)]
+
+    [Range(0, 1)]
     public float BlendAlpha = 0.5f;
 
     [BoxGroup("Detail Textures")]
     public Texture2D detailTextureR;
+
     [BoxGroup("Detail Textures")]
     public Texture2D detailTextureG;
+
     [BoxGroup("Detail Textures")]
     public Texture2D detailTextureB;
+
     [BoxGroup("Detail Textures")]
     public Texture2D detailTextureA;
 
     //Private
     private TerrainReferenceHolder terrainReferenceHolder;
+
     private GameObject[] gameObjects;
     private List<MeshGenerator> generatorList;
     private int concurrentJobs;
@@ -54,7 +62,7 @@ public class GroundGen : MonoBehaviour
         StartCoroutine(InitGeneration());
     }
 
-    void applyTextureMaps()
+    private void applyTextureMaps()
     {
         groundMat.SetTexture("_Satellite", satelliteImage);
         groundMat.SetTexture("_ColorMap1", colourBlendMap);
@@ -66,7 +74,6 @@ public class GroundGen : MonoBehaviour
         groundMat.SetFloat("_DetailTransitionDistance", DetailTransitionDistance);
         groundMat.SetFloat("_DetailTransitionFalloff", DetailTransitionFalloff);
         groundMat.SetFloat("_BlendAlpha", BlendAlpha);
-
     }
 
     public void tickDownJob()
@@ -79,7 +86,7 @@ public class GroundGen : MonoBehaviour
         concurrentJobs++;
     }
 
-    IEnumerator InitGeneration()
+    private IEnumerator InitGeneration()
     {
         //int subdivisions = terrainReferenceHolder.mapData.mapSize / 16250;
         int subidividedSize = terrainReferenceHolder.mapData.mapSize / terrainReferenceHolder.mapData.subdivisions;
@@ -93,7 +100,6 @@ public class GroundGen : MonoBehaviour
         {
             item.Init();
             //item = new MeshTerrainLayer(item.)
-            
         }
 
         for (int i = 0; i < terrainReferenceHolder.mapData.subdivisions; i++)
@@ -119,9 +125,5 @@ public class GroundGen : MonoBehaviour
         }
         generationComplete = true;
         yield return null;
-
-        
     }
-
-    
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace PCT.UI
 {
@@ -8,7 +6,5 @@ namespace PCT.UI
     public class ThemeObject : ScriptableObject
     {
         public Color background;
-
     }
-
 }

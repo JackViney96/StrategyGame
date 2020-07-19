@@ -1,9 +1,7 @@
 ﻿using NaughtyAttributes;
 using System;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace PCT.UI
 {
@@ -18,7 +16,7 @@ namespace PCT.UI
 
         public void Create(GameObject panel)
         {
-            //TODO: 
+            //TODO:
             //var buttonInstance = GameObject.Instantiate(menu, panel.transform);
             menu.transform.parent = panel.transform;
 

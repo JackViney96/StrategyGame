@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: beech
-  m_Shader: {fileID: 4800000, guid: f701593b53bd4ff4f81cf6efedd350d2, type: 3}
-  m_ShaderKeywords: _ALPHATEST_ON _NORMALMAP
+  m_Name: grass
+  m_Shader: {fileID: 4800000, guid: cda0e0de63f7b074aaba60d675ae4793, type: 3}
+  m_ShaderKeywords: _ALPHATEST_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -19,15 +19,27 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Albedo:
+    - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 18b0935d0e7ec4240ad4cb2644b3a17e, type: 3}
+    - _ColorMap1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailA:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailB:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailG:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -39,31 +51,23 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DetailR:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 60931f2f751ea47479d9cb15b847e3ef, type: 3}
+    - _GlossMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Metallic:
-        m_Texture: {fileID: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: b1d40872ab2ecf442ae858fbefb570f7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Normal:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Normals:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Occlusion:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -75,20 +79,24 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Satellite:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShadowOffset:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SmoothnessMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SpecGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Specular:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: b7100c9a3b2402b4fa68e24e7580d6d5, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5b5231e3fdda5484d90111c8c82bac63, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TranslucencyMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -96,41 +104,46 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _BlendAlpha: 0.5
     - _BranchPhase: 0
     - _BumpScale: 1
-    - _Cutoff: 0.5
+    - _Cutoff: 0.034
     - _DetailNormalMapScale: 1
+    - _DetailTransitionDistance: 5
+    - _DetailTransitionFalloff: -0.5
     - _Distance: 30
     - _DstBlend: 0
     - _EdgeFlutter: 1
-    - _EndDitheringFade: 1
     - _Falloff: -0.25
-    - _Float0: 0
-    - _Float1: 0
-    - _GlossMapScale: 0
+    - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
+    - _GrassHeight: 0.5
+    - _GrassWidt: 0.25
+    - _GrassWidth: -0.43
     - _Metallic: 0
     - _Mode: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _PrimaryFactor: 0
-    - _RimPower: 0
     - _SecondaryFactor: 0
+    - _Shininess: 0.078125
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SquashAmount: 1
     - _SrcBlend: 1
-    - _StartDitheringFade: 0
     - _TessValue: 15
     - _UVSec: 0
+    - _WindSpeed: 50
+    - _WindStrength: 0.01
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
+    - _BackgroundColor: {r: 1, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RimColor: {r: 0, g: 0, b: 0, a: 0}
-    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _TreeInstanceColor: {r: 0, g: 0, b: 0, a: 0}
-    - _TreeInstanceScale: {r: 0, g: 0, b: 0, a: 0}
+    - _ForegroundColor: {r: 0, g: 1, b: 0, a: 1}
+    - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
     - _TreeOffset: {r: 0, g: 5, b: 0, a: 0}

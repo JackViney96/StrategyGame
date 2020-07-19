@@ -10,6 +10,7 @@ namespace PCT.UI
         [Header("A generic element with no customizability - dividers, etc.")]
         [Required]
         public GameObject prefab;
+
         public void Create(GameObject panel)
         {
             GameObject.Instantiate(prefab, panel.transform);

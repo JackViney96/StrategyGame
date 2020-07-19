@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace PCT.UI
@@ -9,6 +8,7 @@ namespace PCT.UI
         public ThemeObject theme;
 
         private List<IThemeable> themeableComponents = new List<IThemeable>();
+
         public void Start()
         {
             GetComponentsInChildren(true, themeableComponents);
@@ -21,5 +21,4 @@ namespace PCT.UI
             //BroadcastMessage("Theme", theme, SendMessageOptions.DontRequireReceiver);
         }
     }
-
 }
