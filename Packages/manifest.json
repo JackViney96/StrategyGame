@@ -5,6 +5,7 @@
     "com.unity.ide.rider": "1.1.4",
     "com.unity.ide.vscode": "1.2.0",
     "com.unity.inputsystem": "1.0.0-preview.7",
+    "com.unity.postprocessing": "2.3.0",
     "com.unity.test-framework": "1.1.14",
     "com.unity.textmeshpro": "2.0.1",
     "com.unity.timeline": "1.2.14",
@@ -44,6 +45,10 @@
     "com.unity.modules.xr": "1.0.0"
   },
   "lock": {
+    "com.coffee.upm-git-extension": {
+      "revision": "HEAD",
+      "hash": "aa9f6ea79913e7e2749edea528c42f2f700ac401"
+    },
     "com.whinarn.unitymeshsimplifier": {
       "revision": "HEAD",
       "hash": "2cff118df872faecac1e5a96cdb06e2ba3f8c708"
@@ -51,10 +56,6 @@
     "com.xeleh.enhancer": {
       "revision": "HEAD",
       "hash": "49cbe795560b56ddf8ed76b945379a4c6c7b27e9"
-    },
-    "com.coffee.upm-git-extension": {
-      "revision": "HEAD",
-      "hash": "aa9f6ea79913e7e2749edea528c42f2f700ac401"
     }
   }
 }
