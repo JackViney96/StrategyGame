@@ -43,7 +43,7 @@ public class LevelManagerScript : MonoBehaviour
         DebugLogConsole.AddCommandInstance("load", "Loads the map", "LoadData", this);
         DebugLogConsole.AddCommandInstance("navmesh", "Generate Navmesh", "GenerateNavMesh", this);
 
-        LoadData();
+        //LoadData();
     }
 
     public void SaveData()

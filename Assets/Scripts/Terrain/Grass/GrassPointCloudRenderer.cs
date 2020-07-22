@@ -5,8 +5,8 @@ using UnityEngine;
 public class GrassPointCloudRenderer : MonoBehaviour
 {
 
-    //public Mesh grassMesh;
-    //public Material material;
+    public Mesh grassMesh;
+    public Material material;
 
     private Mesh mesh;
     public MeshFilter filter;

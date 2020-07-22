@@ -27,30 +27,37 @@ Shader "Grass/Grass Geometry Shader"
     }
         SubShader
         {
-            Tags {"RenderType" = "Opaque" }
+            Tags{ "Queue" = "AlphaTest" "RenderType" = "TransparentCutout" "IgnoreProjector" = "True" }
+            //Tags {"RenderType" = "Opaque" }
 
             // This shader only implements the deferred rendering pass (GBuffer
             // construction) and the shadow caster pass, so that it doesn't
             // support forward rendering.
 
+            
 
             Pass
             {
-                Tags { "LightMode" = "ForwardBase" }
-                Cull OFF
+                Tags { "LightMode" = "Deferred" }
+                //Tags { "LightMode" = "ForwardBase" }
+                
+
+                //Cull Back
+                //Cull Off
+                //Blend SrcAlpha OneMinusSrcAlpha
+                //ZWrite Off
                 CGPROGRAM
 
                 // Vertex-Shader with vert-function
                 #pragma vertex vert
                 // Fragment-Shader with frag-function
-                #pragma fragment Fragment
+                #pragma fragment frag
                 // Geometry-Shader with geom-function 
                 #pragma geometry geom
 
-                // Use shader model 3.0 target, to get nicer looking lighting
-                #pragma target 4.0 // needs to be 4.0 !
-                //#pragma multi_compile_prepassfinal noshadowmask nodynlightmap nodirlightmap nolightmap
-                #pragma multi_compile_fwdbase
+                #pragma target 4.0
+                #pragma multi_compile_prepassfinal noshadowmask nodynlightmap nodirlightmap nolightmap
+                //#pragma multi_compile_fwdbase
                 
                 #include "GrassGeometry.cginc"
 
@@ -60,23 +67,22 @@ Shader "Grass/Grass Geometry Shader"
 
             //Pass
             //{
-            //    Tags { "LightMode" = "ForwardAdd" }
-            //    Cull OFF
-            //    Blend One One
-            //    ZWrite Off
+            //    Tags { "LightMode" = "Deferred" }
+
+            //    Cull Front
             //    CGPROGRAM
 
             //    // Vertex-Shader with vert-function
             //    #pragma vertex vert
             //    // Fragment-Shader with frag-function
-            //    #pragma fragment Fragment
+            //    #pragma fragment frag
             //    // Geometry-Shader with geom-function 
             //    #pragma geometry geom
 
-            //    // Use shader model 3.0 target, to get nicer looking lighting
-            //    #pragma target 4.0 // needs to be 4.0 !
-            //    //#pragma multi_compile_prepassfinal noshadowmask nodynlightmap nodirlightmap nolightmap
-            //    #pragma multi_compile_fwdadd
+            //    #pragma target 4.0
+            //    #pragma multi_compile_prepassfinal noshadowmask nodynlightmap nodirlightmap nolightmap
+            //    //#pragma multi_compile_fwdbase
+            //    #define FLIP_NORMALS
 
             //    #include "GrassGeometry.cginc"
 
@@ -93,7 +99,7 @@ Shader "Grass/Grass Geometry Shader"
                 // Vertex-Shader with vert-function
                 #pragma vertex vert
                 // Fragment-Shader with frag-function
-                #pragma fragment Fragment
+                #pragma fragment frag
                 // Geometry-Shader with geom-function 
                 #pragma geometry geom
                 #pragma multi_compile_shadowcaster noshadowmask nodynlightmap nodirlightmap nolightmap

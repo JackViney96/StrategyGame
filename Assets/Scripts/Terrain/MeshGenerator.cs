@@ -91,6 +91,7 @@ public class MeshGenerator : MonoBehaviour
 
         //mesh.UploadMeshData(true);
         terrainReferenceHolder.generator.tickDownJob();
+        //this.GetComponent<DrawMeshInstancedIndirectDemo>().Setup();
         System.GC.Collect();
     }
 

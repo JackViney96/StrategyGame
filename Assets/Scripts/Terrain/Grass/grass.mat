@@ -13,7 +13,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2450
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -64,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: b3101af65b8fa814e8bbcda4070eef97, type: 3}
+        m_Texture: {fileID: 2800000, guid: 830791e695d023747910a16e9a3c777e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -107,7 +107,7 @@ Material:
     - _BlendAlpha: 0.5
     - _BranchPhase: 0
     - _BumpScale: 1
-    - _Cutoff: 0.223
+    - _Cutoff: 0.367
     - _DetailNormalMapScale: 1
     - _DetailTransitionDistance: 5
     - _DetailTransitionFalloff: -0.5
@@ -116,11 +116,11 @@ Material:
     - _EdgeFlutter: 1
     - _Falloff: -0.25
     - _GlossMapScale: 1
-    - _Glossiness: 0
+    - _Glossiness: 0.487
     - _GlossyReflections: 1
-    - _GrassHeight: 1.5
+    - _GrassHeight: 2.5
     - _GrassWidt: 0.25
-    - _GrassWidth: 0
+    - _GrassWidth: 1.5
     - _Metallic: 0
     - _Mode: 1
     - _OcclusionStrength: 1
