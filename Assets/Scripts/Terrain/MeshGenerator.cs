@@ -91,7 +91,7 @@ public class MeshGenerator : MonoBehaviour
 
         //mesh.UploadMeshData(true);
         terrainReferenceHolder.generator.tickDownJob();
-        //this.GetComponent<DrawMeshInstancedIndirectDemo>().Setup();
+        StartCoroutine(this.GetComponent<DrawInstancedGrass>().Setup());
         System.GC.Collect();
     }
 
@@ -154,7 +154,6 @@ public class MeshGenerator : MonoBehaviour
         //triangles = returned.tris;
 
         //Time to generate UVs
-        //TODO: Generate second set of UVs for detail textures?
 
         for (int i = 0; i < uv.Length; i++)
         {

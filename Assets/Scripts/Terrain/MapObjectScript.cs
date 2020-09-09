@@ -25,7 +25,8 @@ public class MapObjectScript : MonoBehaviour
         {
             var temp3 = Instantiate(treePrefab,
                 new Vector3(ret.Pos(i).Value.X, ret.Pos(i).Value.Y, ret.Pos(i).Value.Z),
-                Quaternion.Euler(new Vector3(ret.Rot(i).Value.X, ret.Rot(i).Value.Y, ret.Rot(i).Value.Z))
+                Quaternion.Euler(new Vector3(ret.Rot(i).Value.X, ret.Rot(i).Value.Y, ret.Rot(i).Value.Z)),
+                this.transform
                 );
             temp3.transform.localScale = new Vector3(ret.Scale(i).Value.X, ret.Scale(i).Value.Y, ret.Scale(i).Value.Z);
             SaveTest.mapObjectsList.Add(temp3);
