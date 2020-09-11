@@ -11,6 +11,7 @@ public class DrawInstancedGrass : MonoBehaviour
 
     public int population;
     public float range;
+    public float bladeSize;
 
     public Material material;
     [System.NonSerialized]
@@ -36,7 +37,7 @@ public class DrawInstancedGrass : MonoBehaviour
         public static int Size()
         {
             return
-                sizeof(float) * 4 * 4// matrix;
+                sizeof(float) * 4 * 4// matrix1;
                 + sizeof(float) * 2; //GroundUV
         }
     }
@@ -49,7 +50,7 @@ public class DrawInstancedGrass : MonoBehaviour
 
     MeshProperties[] properties;
 
-    public IEnumerator Setup()
+    public IEnumerator Setup(Vector3 worldPosition)
     {
        // Mesh mesh = CreateQuad();
         //this.mesh = mesh;
@@ -79,7 +80,7 @@ public class DrawInstancedGrass : MonoBehaviour
 
 
         Task task;
-        this.StartCoroutineAsync(InitializeBuffers(meshData), out task);
+        this.StartCoroutineAsync(InitializeBuffers(meshData, worldPosition), out task);
         yield return StartCoroutine(task.Wait());
 
         meshPropertiesBuffer = new ComputeBuffer(population, MeshProperties.Size());
@@ -90,19 +91,19 @@ public class DrawInstancedGrass : MonoBehaviour
         isReady = true;
     }
 
-    struct MeshPointAndUV
+    struct PointAndUV
     {
         public Vector3 point;
         public Vector2 uv;
 
-        public MeshPointAndUV(Vector3 point, Vector2 uv)
+        public PointAndUV(Vector3 point, Vector2 uv)
         {
             this.point = point;
             this.uv = uv;
         }
     }
 
-    private MeshPointAndUV getPointOnMesh(MeshData meshData)
+    private PointAndUV getPointOnMesh(MeshData meshData, Vector3 worldPos)
     {
         System.Random rnd = StaticRandom.random.Value;
         //System.Random rnd = new System.Random();
@@ -136,14 +137,15 @@ public class DrawInstancedGrass : MonoBehaviour
 
         //Vector3 newPointOnMesh = meshPoints[vertIndex1];
         Vector3 newPointOnMesh = meshPoints[vertIndex1] + (a * (meshPoints[vertIndex2] - meshPoints[vertIndex1])) + (b * (meshPoints[vertIndex3] - meshPoints[vertIndex1]));
+        newPointOnMesh += worldPos;
 
         //newPointOnMesh = transform.TransformPoint(newPointOnMesh); // convert back to worldspace
         //newPointOnMesh -= transform.position;
         
-        return new MeshPointAndUV(newPointOnMesh, UV1);
+        return new PointAndUV(newPointOnMesh, UV1);
         //return new Vector3(Random.Range(-range, range), Random.Range(-range, range), Random.Range(-range, range));
     }
-    private IEnumerator InitializeBuffers(MeshData meshData)
+    private IEnumerator InitializeBuffers(MeshData meshData, Vector3 worldPos)
     {
         // Argument buffer used by DrawMeshInstancedIndirect.
 
@@ -157,14 +159,13 @@ public class DrawInstancedGrass : MonoBehaviour
             MeshProperties props = new MeshProperties();
 
             //yield return Ninja.JumpToUnity;
-            MeshPointAndUV pointAndUV = getPointOnMesh(meshData);
+            PointAndUV pointAndUV = getPointOnMesh(meshData, worldPos);
             Vector3 position = pointAndUV.point;
             //yield return Ninja.JumpBack;
             
-            //Rotate 90 degrees at most because otherwise lighting can break... Not sure if shader can be fixed v_v
-            Quaternion rotation = Quaternion.Euler(0, rnd.Next(90), 0); // Quaternion.Euler(270, Random.Range(-180, 180), 0);
-            Vector3 scale = Vector3.one * (float)(rnd.NextDouble() * 1.5);
-            position.y += scale.y * 0.5f;
+            Quaternion rotation = Quaternion.Euler(0, rnd.Next(359), 0); // Quaternion.Euler(270, Random.Range(-180, 180), 0);
+            Vector3 scale = Vector3.one * (float)(rnd.NextDouble() * bladeSize);
+            position.y += scale.y * 0.5f; //raise up out of the ground
 
             props.TRSMatrix = Matrix4x4.TRS(position, rotation, scale);
             props.groundUV = pointAndUV.uv;
@@ -188,7 +189,7 @@ public class DrawInstancedGrass : MonoBehaviour
     [Button]
     private void GenerateGrass()
     {
-        StartCoroutine(Setup());
+        StartCoroutine(Setup(transform.position));
     }
 
 

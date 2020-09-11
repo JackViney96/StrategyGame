@@ -137,7 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3120ac3ba35ee3446be6ffa1661d6e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  population: 20000
-  range: 5000
+  population: 10000
+  range: 84
+  bladeSize: 3
   material: {fileID: 2100000, guid: 4a7879bc679b7864b94bce9081759168, type: 2}
   grassMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}

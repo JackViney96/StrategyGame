@@ -91,7 +91,7 @@ public class MeshGenerator : MonoBehaviour
 
         //mesh.UploadMeshData(true);
         terrainReferenceHolder.generator.tickDownJob();
-        StartCoroutine(this.GetComponent<DrawInstancedGrass>().Setup());
+        StartCoroutine(this.GetComponent<DrawInstancedGrass>().Setup(transform.position));
         System.GC.Collect();
     }
 
