@@ -9,8 +9,10 @@ public class DrawInstancedGrass : MonoBehaviour
 {
     private Mesh parentMesh;
 
-    public int population;
+    public int bladesPerTri;
+    private int population;
     public float range;
+    public float distance;
     public float bladeSize;
 
     public Material material;
@@ -24,7 +26,9 @@ public class DrawInstancedGrass : MonoBehaviour
     
     private Bounds bounds;
 
+    [SerializeField]
     private bool isReady = false;
+    private bool canGenerate = false;
 
     // Mesh Properties struct to be read from the GPU.
     // Size() is a convenience funciton which returns the stride of the struct.
@@ -41,7 +45,7 @@ public class DrawInstancedGrass : MonoBehaviour
                 + sizeof(float) * 2; //GroundUV
         }
     }
-    public struct MeshData
+    class MeshData
     {
         public Vector3[] verts;
         public int[] tris;
@@ -55,12 +59,14 @@ public class DrawInstancedGrass : MonoBehaviour
        // Mesh mesh = CreateQuad();
         //this.mesh = mesh;
         parentMesh = GetComponent<MeshFilter>().sharedMesh;
-        MeshData meshData;
+        MeshData meshData = new MeshData();
         meshData.verts = parentMesh.vertices;
         meshData.tris = parentMesh.triangles;
         meshData.uvs = parentMesh.uv;
 
         _material = Instantiate(material);
+
+        population = meshData.tris.Length * bladesPerTri;
 
         // Boundary surrounding the meshes we will be drawing.  Used for occlusion.
         bounds = new Bounds(transform.position, Vector3.one * (range + 1));
@@ -88,10 +94,12 @@ public class DrawInstancedGrass : MonoBehaviour
 
         _material.SetBuffer("_Properties", meshPropertiesBuffer);
 
+        properties = null;
+
         isReady = true;
     }
 
-    struct PointAndUV
+    class PointAndUV
     {
         public Vector3 point;
         public Vector2 uv;
@@ -103,47 +111,40 @@ public class DrawInstancedGrass : MonoBehaviour
         }
     }
 
-    private PointAndUV getPointOnMesh(MeshData meshData, Vector3 worldPos)
+    private PointAndUV getPointOnMesh(int curTri, MeshData meshData, Vector3 worldPos, int blade)
     {
-        System.Random rnd = StaticRandom.random.Value;
-        //System.Random rnd = new System.Random();
+        System.Random rnd = GrassRandom.random.Value;
         Vector3[] meshPoints = meshData.verts;
         int[] tris = meshData.tris;
         Vector2[] uvs = meshData.uvs;
 
-        //int triStart = rnd.Next(0, meshPoints.Length / 3); // get first index of each triangle
-        int triStart = rnd.Next(tris.Length / 3);
-
-
-
         float a = (float)rnd.NextDouble();
         float b = (float)rnd.NextDouble();
-        //float a = StaticRandom.Rand();
-        //float b = StaticRandom.Rand();
 
+        for (int i = 0; i < blade; i++)
+        {
+            a = (float)rnd.NextDouble();
+            b = (float)rnd.NextDouble();
+        }
+
+        
         if (a + b >= 1)
         { // reflect back if > 1
             a = 1 - a;
             b = 1 - b;
         }
 
-        // apply formula to get new random point inside triangle
-        //Vector3 newPointOnMesh = meshPoints[triStart] + (a * (meshPoints[triStart + 1] - meshPoints[triStart])) + (b * (meshPoints[triStart + 2] - meshPoints[triStart]));
-        int vertIndex1 = tris[triStart * 3 + 0];
-        int vertIndex2 = tris[triStart * 3 + 1];
-        int vertIndex3 = tris[triStart * 3 + 2];
+        int vertIndex1 = tris[curTri * 3 + 0];
+        int vertIndex2 = tris[curTri * 3 + 1];
+        int vertIndex3 = tris[curTri * 3 + 2];
 
-        Vector2 UV1 = uvs[tris[triStart * 3 + 0]];
+        Vector2 UV1 = uvs[tris[curTri * 3 + 0]];
 
-        //Vector3 newPointOnMesh = meshPoints[vertIndex1];
         Vector3 newPointOnMesh = meshPoints[vertIndex1] + (a * (meshPoints[vertIndex2] - meshPoints[vertIndex1])) + (b * (meshPoints[vertIndex3] - meshPoints[vertIndex1]));
         newPointOnMesh += worldPos;
-
-        //newPointOnMesh = transform.TransformPoint(newPointOnMesh); // convert back to worldspace
-        //newPointOnMesh -= transform.position;
+        //newPointOnMesh += Vector3.up * blade;
         
         return new PointAndUV(newPointOnMesh, UV1);
-        //return new Vector3(Random.Range(-range, range), Random.Range(-range, range), Random.Range(-range, range));
     }
     private IEnumerator InitializeBuffers(MeshData meshData, Vector3 worldPos)
     {
@@ -152,62 +153,85 @@ public class DrawInstancedGrass : MonoBehaviour
 
         // Initialize buffer with the given population.
         //System.Random rnd = new System.Random();
-        System.Random rnd = StaticRandom.random.Value;
-
-        for (int i = 0; i < population; i++)
+        System.Random rnd = GrassRandom.random.Value;
+        //Why oh why does this work?? why can't it just be 100% of the tris????
+        for (int j = 0; j < bladesPerTri; j++)
         {
-            MeshProperties props = new MeshProperties();
-
-            //yield return Ninja.JumpToUnity;
-            PointAndUV pointAndUV = getPointOnMesh(meshData, worldPos);
-            Vector3 position = pointAndUV.point;
-            //yield return Ninja.JumpBack;
+            for (int i = 0; i < meshData.tris.Length * 0.96; i++)
+            {
             
-            Quaternion rotation = Quaternion.Euler(0, rnd.Next(359), 0); // Quaternion.Euler(270, Random.Range(-180, 180), 0);
-            Vector3 scale = Vector3.one * (float)(rnd.NextDouble() * bladeSize);
-            position.y += scale.y * 0.5f; //raise up out of the ground
+                MeshProperties props = new MeshProperties();
 
-            props.TRSMatrix = Matrix4x4.TRS(position, rotation, scale);
-            props.groundUV = pointAndUV.uv;
-            //props.color = Vector4.zero;
-            //props.mat = Matrix4x4.identity;
+                //yield return Ninja.JumpToUnity;
+                PointAndUV pointAndUV = getPointOnMesh(i / 3, meshData, worldPos, j);
+                Vector3 position = pointAndUV.point;
+                //yield return Ninja.JumpBack;
 
-            properties[i] = props;
+                Quaternion rotation = Quaternion.Euler(0, rnd.Next(359), 0); // Quaternion.Euler(270, Random.Range(-180, 180), 0);
+                Vector3 scale = Vector3.one * (float)(rnd.NextDouble() * bladeSize);
+                position.y += scale.y * 0.5f; //raise up out of the ground
+
+                props.TRSMatrix = Matrix4x4.TRS(position, rotation, scale);
+                props.groundUV = pointAndUV.uv;
+                //props.color = Vector4.zero;
+                //props.mat = Matrix4x4.identity;
+
+                properties[i+(j*i)] = props;
+            }
         }
+
+        
 
         
         yield return null;
     }
 
     Camera maincam;
+    Collider coll;
 
     private void OnEnable()
     {
         maincam = Camera.main;
+        coll = GetComponent<Collider>();
     }
 
     [Button]
-    private void GenerateGrass()
+    public void GenerateGrass()
     {
-        StartCoroutine(Setup(transform.position));
+        canGenerate = true;
     }
 
 
     private void Update()
     {
-        if (isReady)
+        Vector3 closestPoint = coll.ClosestPointOnBounds(maincam.transform.position);
+        float dist = Vector3.Distance(maincam.transform.position, closestPoint);
+
+        if (canGenerate && dist < distance * 1.5)
         {
-            float dist = Vector3.Distance(maincam.transform.position, transform.position);
-            if (dist < 200f)
-            {
-                Graphics.DrawMeshInstancedIndirect(grassMesh, 0, _material, bounds, argsBuffer);
-            }
-            
+            StartCoroutine(Setup(transform.position));
+            canGenerate = false;
         }
-        
+        if (isReady && dist < distance)
+        {
+            Graphics.DrawMeshInstancedIndirect(grassMesh, 0, _material, bounds, argsBuffer);
+
+        }
+
+        if (isReady && dist > distance * 1.5)
+        {
+            ReleaseBuffers();
+            canGenerate = true;
+        }
+
     }
 
     private void OnDisable()
+    {
+        ReleaseBuffers();   
+    }
+
+    private void ReleaseBuffers()
     {
         // Release gracefully.
         isReady = false;
@@ -225,9 +249,9 @@ public class DrawInstancedGrass : MonoBehaviour
     }
 }
 
-public static class StaticRandom
+public static class GrassRandom
 {
-    static int seed = Environment.TickCount;
+    static int seed = 8008135;
 
     static public readonly ThreadLocal<System.Random> random =
         new ThreadLocal<System.Random>(() => new System.Random(Interlocked.Increment(ref seed)));

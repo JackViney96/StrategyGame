@@ -11,7 +11,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: 4f0e30d990622544f897be540c62cc5c, type: 3}
   m_ShaderKeywords: GEOM_TYPE_BRANCH LUX_TRANSLUCENTLIGHTING _ALPHATEST_ON
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: c22e784b649a9be4083662363b1dd1a3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CombinedMap:
@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 830791e695d023747910a16e9a3c777e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 43b937d53f9874f42bd07da0d8183f8d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -61,6 +61,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SatTex:
+        m_Texture: {fileID: 2800000, guid: 63a851a7b3951074391fd450f2157ec6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -88,6 +92,7 @@ Material:
     - _DiffuseScatteringEnabled: 0
     - _DoubleSided: 0
     - _DstBlend: 0
+    - _FadeDistance: 50
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _Glossiness2: 0.5
@@ -107,7 +112,7 @@ Material:
     - _ParallaxTiling: 1
     - _PuddleMask: 0
     - _PuddleMaskTiling: 1
-    - _ScatteringPower: 4
+    - _ScatteringPower: 2.54
     - _SmoothnessTextureChannel: 0
     - _Snow: 0
     - _SnowDetailStrength: 0.3
@@ -117,7 +122,7 @@ Material:
     - _SnowSlopeDamp: 0.75
     - _SrcBlend: 1
     - _SyncWaterOfMaterials: 0
-    - _TranslucencyStrength: 0.5
+    - _TranslucencyStrength: 0.478
     - _UVSec: 0
     - _UseCombinedMap: 1
     - _UseMixMapping: 0
