@@ -14,6 +14,7 @@ public class DrawInstancedGrass : MonoBehaviour
     public float range;
     public float distance;
     public float bladeSize;
+    public bool shadows = true;
 
     public Material material;
     [System.NonSerialized]
@@ -214,8 +215,15 @@ public class DrawInstancedGrass : MonoBehaviour
         }
         if (isReady && dist < distance)
         {
-            Graphics.DrawMeshInstancedIndirect(grassMesh, 0, _material, bounds, argsBuffer);
-
+            if (shadows)
+            {
+                Graphics.DrawMeshInstancedIndirect(grassMesh, 0, _material, bounds, argsBuffer, 0, null, UnityEngine.Rendering.ShadowCastingMode.TwoSided, true);
+            }
+            else
+            {
+                Graphics.DrawMeshInstancedIndirect(grassMesh, 0, _material, bounds, argsBuffer, 0, null, UnityEngine.Rendering.ShadowCastingMode.Off, false);
+            }
+            
         }
 
         if (isReady && dist > distance * 1.5)
