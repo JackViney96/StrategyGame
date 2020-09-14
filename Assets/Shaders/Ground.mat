@@ -96,7 +96,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Satellite:
-        m_Texture: {fileID: 2800000, guid: 63a851a7b3951074391fd450f2157ec6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 627bf7858e045de4bb0c003f027b3ea6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture0:

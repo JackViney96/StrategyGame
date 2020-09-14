@@ -64,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SatTex:
-        m_Texture: {fileID: 2800000, guid: 63a851a7b3951074391fd450f2157ec6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 627bf7858e045de4bb0c003f027b3ea6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -73,6 +73,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap2:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TintTex:
+        m_Texture: {fileID: 2800000, guid: c68296334e691ed45b62266cbc716628, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TranslucencyOcclusion:
@@ -92,7 +96,7 @@ Material:
     - _DiffuseScatteringEnabled: 0
     - _DoubleSided: 0
     - _DstBlend: 0
-    - _FadeDistance: 50
+    - _FadeDistance: 100
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _Glossiness2: 0.5
@@ -142,6 +146,7 @@ Material:
     - _SnowTiling: {r: 2, g: 2, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecColor2: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _TintStrength: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
     - _UVRatio: {r: 1, g: 1, b: 0, a: 0}
     - _WaterAccumulationCracksPuddles: {r: 0, g: 1, b: 0, a: 1}
     - _WaterAccumulationCracksPuddles2: {r: 0, g: 1, b: 0, a: 1}

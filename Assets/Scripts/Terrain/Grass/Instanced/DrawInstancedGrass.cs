@@ -14,7 +14,7 @@ public class DrawInstancedGrass : MonoBehaviour
     public float range;
     public float distance;
     public float bladeSize;
-    public bool shadows = true;
+    public ShadowSetting shadows = ShadowSetting.Off;
 
     public Material material;
     [System.NonSerialized]
@@ -30,6 +30,13 @@ public class DrawInstancedGrass : MonoBehaviour
     [SerializeField]
     private bool isReady = false;
     private bool canGenerate = false;
+
+    public enum ShadowSetting
+    {
+        Off,
+        Receive,
+        Full
+    }
 
     // Mesh Properties struct to be read from the GPU.
     // Size() is a convenience funciton which returns the stride of the struct.
@@ -94,6 +101,7 @@ public class DrawInstancedGrass : MonoBehaviour
         meshPropertiesBuffer.SetData(properties);
 
         _material.SetBuffer("_Properties", meshPropertiesBuffer);
+        _material.SetFloat("_FadeDistance", distance);
 
         properties = null;
 
@@ -189,11 +197,13 @@ public class DrawInstancedGrass : MonoBehaviour
 
     Camera maincam;
     Collider coll;
+    Renderer rend;
 
     private void OnEnable()
     {
         maincam = Camera.main;
         coll = GetComponent<Collider>();
+        rend = GetComponent<Renderer>();
     }
 
     [Button]
@@ -207,30 +217,44 @@ public class DrawInstancedGrass : MonoBehaviour
     {
         Vector3 closestPoint = coll.ClosestPointOnBounds(maincam.transform.position);
         float dist = Vector3.Distance(maincam.transform.position, closestPoint);
-
-        if (canGenerate && dist < distance * 1.5)
+        if (rend.isVisible)
         {
-            StartCoroutine(Setup(transform.position));
-            canGenerate = false;
-        }
-        if (isReady && dist < distance)
-        {
-            if (shadows)
+            if (canGenerate && dist < distance * 1.5)
             {
-                Graphics.DrawMeshInstancedIndirect(grassMesh, 0, _material, bounds, argsBuffer, 0, null, UnityEngine.Rendering.ShadowCastingMode.TwoSided, true);
+                StartCoroutine(Setup(transform.position));
+                canGenerate = false;
             }
-            else
+            if (isReady && dist < distance)
             {
-                Graphics.DrawMeshInstancedIndirect(grassMesh, 0, _material, bounds, argsBuffer, 0, null, UnityEngine.Rendering.ShadowCastingMode.Off, false);
-            }
-            
-        }
+                switch (shadows)
+                {
+                    case ShadowSetting.Off:
+                        Graphics.DrawMeshInstancedIndirect(grassMesh, 0, _material, bounds, argsBuffer, 0, null, UnityEngine.Rendering.ShadowCastingMode.Off, false);
+                        break;
+                    case ShadowSetting.Receive:
+                        Graphics.DrawMeshInstancedIndirect(grassMesh, 0, _material, bounds, argsBuffer, 0, null, UnityEngine.Rendering.ShadowCastingMode.Off, true);
+                        break;
+                    case ShadowSetting.Full:
+                        Graphics.DrawMeshInstancedIndirect(grassMesh, 0, _material, bounds, argsBuffer, 0, null, UnityEngine.Rendering.ShadowCastingMode.TwoSided, true);
+                        break;
+                    default:
+                        break;
+                }
 
-        if (isReady && dist > distance * 1.5)
+            }
+
+        }
+        else if (isReady)
         {
             ReleaseBuffers();
             canGenerate = true;
         }
+
+        //if (isReady && dist > distance * 1.5)
+        //{
+        //    ReleaseBuffers();
+        //    canGenerate = true;
+        //}
 
     }
 
