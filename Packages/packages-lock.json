@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "aa9f6ea79913e7e2749edea528c42f2f700ac401"
+      "hash": "314846d68c45684a9a82b76fae4892c4992fecd7"
     },
     "com.unity.collab-proxy": {
       "version": "1.2.16",
@@ -31,7 +31,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.vscode": {
-      "version": "1.2.1",
+      "version": "1.2.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -52,7 +52,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
-      "version": "1.1.16",
+      "version": "1.1.18",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -93,13 +93,6 @@
       "source": "git",
       "dependencies": {},
       "hash": "2cff118df872faecac1e5a96cdb06e2ba3f8c708"
-    },
-    "com.xeleh.enhancer": {
-      "version": "https://github.com/xeleh/enhancer.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "49cbe795560b56ddf8ed76b945379a4c6c7b27e9"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

@@ -13,34 +13,30 @@ MonoBehaviour:
   m_Name: TRH
   m_EditorClassIdentifier: 
   mapData:
-    mapSize: 256
-    subdivisions: 4
-    density: 0.5
+    mapSize: 512
+    subdivisions: 12
+    density: 1
     terrainLayers:
-    - isTextureSampler: 1
-      heightMap: {fileID: 2800000, guid: 418f515242c318b4399e562172c7e2d6, type: 3}
-      noiseScale: 0
-      heightScale: 25
-    - isTextureSampler: 1
-      heightMap: {fileID: 2800000, guid: 9ad1d00c4b94a4e4b97cffd0821d0e73, type: 3}
+    - mapFilePath: 
+      noiseScale: 1
+      heightScale: 50
+    - mapFilePath: 
       noiseScale: 0
       heightScale: 5
-    - isTextureSampler: 0
-      heightMap: {fileID: 0}
+    - mapFilePath: 
       noiseScale: 100
       heightScale: 0.25
-    satelliteImage: {fileID: 0}
-    colourBlendMap: {fileID: 0}
-    groundMat: {fileID: 0}
+    satelliteFilePath: field-bright.png
+    colourBlendFilePath: 
     DetailTransitionDistance: 0
     DetailTransitionFalloff: 0
     BlendAlpha: 0
-    detailTextureR: {fileID: 0}
-    detailTextureG: {fileID: 0}
-    detailTextureB: {fileID: 0}
-    detailTextureA: {fileID: 0}
+    detailRFilePath: 
+    detailGFilePath: 
+    detailBFilePath: 
+    detailAFilePath: 
   generator: {fileID: 0}
   navBuilder: {fileID: 0}
   terrainBounds:
-    m_Center: {x: 128, y: 0, z: 128}
-    m_Extent: {x: 128, y: 128, z: 128}
+    m_Center: {x: 256, y: 0, z: 256}
+    m_Extent: {x: 256, y: 256, z: 256}

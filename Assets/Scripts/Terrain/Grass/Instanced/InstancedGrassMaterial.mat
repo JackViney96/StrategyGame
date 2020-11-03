@@ -39,6 +39,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DitherPattern:
+        m_Texture: {fileID: 2800000, guid: fbaaffd7147b7c74ba1d2cfb5e205df3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -48,7 +52,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 43b937d53f9874f42bd07da0d8183f8d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0b5ad3750a63381468f19da70244e788, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -76,11 +80,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TintTex:
-        m_Texture: {fileID: 2800000, guid: c68296334e691ed45b62266cbc716628, type: 3}
+        m_Texture: {fileID: 2800000, guid: 00d034bb5072d8043a98b8a4aae5a40d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TranslucencyOcclusion:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WindTex:
+        m_Texture: {fileID: 2800000, guid: 9789d23040cb1fb45ad60392430c3c15, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -96,10 +104,13 @@ Material:
     - _DiffuseScatteringEnabled: 0
     - _DoubleSided: 0
     - _DstBlend: 0
-    - _FadeDistance: 100
+    - _Fade: 300
+    - _FadeDistance: 1
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _Glossiness2: 0.5
+    - _HeightCutoff: 0.01
+    - _HeightFactor: 1
     - _Lighting: 1
     - _LinearSteps: 20
     - _Lux_FlowInterval: 1
@@ -107,6 +118,7 @@ Material:
     - _Lux_FlowNormalTiling: 2
     - _Lux_FlowRefraction: 0.02
     - _Lux_FlowSpeed: 0.05
+    - _MaxFadeDistance: 0
     - _Metallic: 0
     - _MixMappingControl: 0
     - _Mode: 1
@@ -116,7 +128,7 @@ Material:
     - _ParallaxTiling: 1
     - _PuddleMask: 0
     - _PuddleMaskTiling: 1
-    - _ScatteringPower: 2.54
+    - _ScatteringPower: 1.21
     - _SmoothnessTextureChannel: 0
     - _Snow: 0
     - _SnowDetailStrength: 0.3
@@ -126,12 +138,14 @@ Material:
     - _SnowSlopeDamp: 0.75
     - _SrcBlend: 1
     - _SyncWaterOfMaterials: 0
-    - _TranslucencyStrength: 0.478
+    - _TranslucencyStrength: 0.257
     - _UVSec: 0
     - _UseCombinedMap: 1
     - _UseMixMapping: 0
     - _UsePOM: 0
     - _WaterSlopeDamp: 0.5
+    - _WaveAmp: 1
+    - _WaveSpeed: 1
     - _Wetness: 0
     - _ZWrite: 1
     m_Colors:
@@ -152,3 +166,5 @@ Material:
     - _WaterAccumulationCracksPuddles2: {r: 0, g: 1, b: 0, a: 1}
     - _WaterColor: {r: 0, g: 0, b: 0, a: 0}
     - _WaterColor2: {r: 0, g: 0, b: 0, a: 0}
+    - _WindSpeed: {r: 3, g: 1, b: 3, a: 1}
+    - _WorldSize: {r: 100, g: 1, b: 100, a: 1}

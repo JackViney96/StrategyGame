@@ -13,9 +13,8 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
-  stringTagMap:
-    RenderType: TransparentCutout
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -88,6 +87,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SatTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SmoothnessMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -108,6 +111,18 @@ Material:
         m_Texture: {fileID: 2800000, guid: b7100c9a3b2402b4fa68e24e7580d6d5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TintTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TranslucencyOcclusion:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WindTex:
+        m_Texture: {fileID: 2800000, guid: 9789d23040cb1fb45ad60392430c3c15, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _texcoord:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -121,14 +136,17 @@ Material:
     - _DetailNormalMapScale: 1
     - _DiffuseScatteringBias: 0
     - _DiffuseScatteringBias2: 0
-    - _DiffuseScatteringContraction: 8
+    - _DiffuseScatteringContraction: 8.48
     - _DiffuseScatteringContraction2: 8
-    - _DiffuseScatteringEnabled: 0
+    - _DiffuseScatteringEnabled: 1
     - _Distance: 30
     - _DoubleSided: 0
     - _DstBlend: 0
     - _EdgeFlutter: 1
+    - _EnableIndependentPuddleMaskTiling: 0
+    - _EnablePOM: 0
     - _EndDitheringFade: 1
+    - _Fade: 60
     - _Falloff: -0.25
     - _Float0: 0
     - _Float1: 0
@@ -136,6 +154,9 @@ Material:
     - _Glossiness: 0
     - _Glossiness2: 0.5
     - _GlossyReflections: 1
+    - _HeightCutoff: 0
+    - _HeightFactor: 1
+    - _HelpSnowMapping: 0
     - _Lighting: 1
     - _LinearSteps: 20
     - _Lux_FlowInterval: 1
@@ -175,13 +196,15 @@ Material:
     - _UseMixMapping: 0
     - _UsePOM: 0
     - _WaterSlopeDamp: 0.5
+    - _WaveAmp: 1
+    - _WaveSpeed: 1
     - _Wetness: 0
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color2: {r: 1, g: 1, b: 1, a: 1}
-    - _DiffuseScatteringCol: {r: 0, g: 0, b: 0, a: 0}
+    - _DiffuseScatteringCol: {r: 0.38823533, g: 0.5254902, b: 0.12941177, a: 1}
     - _DiffuseScatteringCol2: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _NoiseMapPannerSpeed: {r: 0, g: 0, b: 0, a: 0}
@@ -195,6 +218,7 @@ Material:
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _SpecColor2: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Tint: {r: 0, g: 0, b: 0, a: 0}
+    - _TintStrength: {r: 1, g: 1, b: 1, a: 1}
     - _TreeInstanceColor: {r: 0, g: 0, b: 0, a: 0}
     - _TreeInstanceScale: {r: 0, g: 0, b: 0, a: 0}
     - _TreeOffset: {r: 0, g: 5, b: 0, a: 0}
@@ -203,3 +227,5 @@ Material:
     - _WaterAccumulationCracksPuddles2: {r: 0, g: 1, b: 0, a: 1}
     - _WaterColor: {r: 0, g: 0, b: 0, a: 0}
     - _WaterColor2: {r: 0, g: 0, b: 0, a: 0}
+    - _WindSpeed: {r: 1, g: 1, b: 1, a: 1}
+    - _WorldSize: {r: 100, g: 1, b: 100, a: 1}

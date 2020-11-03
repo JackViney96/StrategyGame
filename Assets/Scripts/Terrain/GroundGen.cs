@@ -108,7 +108,7 @@ public class GroundGen : MonoBehaviour
             {
                 gameObjects[i] = Instantiate(prefab, transform);
                 gameObjects[i].layer = layer;
-                MeshGenerator mGen = gameObjects[i].AddComponent<MeshGenerator>();
+                MeshGenerator mGen = gameObjects[i].GetComponent<MeshGenerator>();
                 gameObjects[i].transform.position = new Vector3(i * (subidividedSize) * transform.localScale.x, 0, j * (subidividedSize) * transform.localScale.z);
                 mGen.Init(in terrainReferenceHolder, subidividedSize, new Vector2(subidividedSize * i, subidividedSize * j));
                 generatorList.Add(mGen);

@@ -138,10 +138,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bladesPerTri: 1
-  range: 204
+  range: 84
   distance: 100
-  bladeSize: 1.25
-  shadows: 1
+  bladeSize: 1
+  shadows: 0
   material: {fileID: 2100000, guid: 4a7879bc679b7864b94bce9081759168, type: 2}
   grassMesh: {fileID: 4579454407841743219, guid: b16bdc40b53972746a928fef4aa9917b,
     type: 3}

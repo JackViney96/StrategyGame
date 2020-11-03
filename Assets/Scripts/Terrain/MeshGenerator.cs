@@ -83,7 +83,8 @@ public class MeshGenerator : MonoBehaviour
         //UnityEditor.MeshUtility.Optimize(mesh);
 
 
-        mesh.RecalculateNormals();
+        //mesh.RecalculateNormals();
+        NormalSolver.RecalculateNormals(mesh, 60);
         mesh.RecalculateBounds();
 
         meshCollider.sharedMesh = mesh;

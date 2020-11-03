@@ -25,6 +25,10 @@ public class StandardCameraController : MonoBehaviour, PCT.Camera.ICameraControl
     [SerializeField]
     private float verticalSpeedDivisor = 2f;
 
+    public Camera camera;
+    float[] distances = new float[32];
+    public float grassDistance = 15;
+
     private float rotationX = 0.0f;
     private float rotationY = 0.0f;
     private bool rotationDesired = false;
@@ -53,6 +57,7 @@ public class StandardCameraController : MonoBehaviour, PCT.Camera.ICameraControl
     {
         //TODO; de-hardcode?
         desiredSpeed = 50f;
+        camera.layerCullSpherical = false;
 #if !UNITY_EDITOR
         Cursor.lockState = CursorLockMode.Confined;
         //Cursor.visible = false;
@@ -139,6 +144,9 @@ public class StandardCameraController : MonoBehaviour, PCT.Camera.ICameraControl
             Rotate();
 
         Move();
+
+        distances[8] = grassDistance;
+        camera.layerCullDistances = distances;
     }
 
     public void Move()
@@ -150,7 +158,7 @@ public class StandardCameraController : MonoBehaviour, PCT.Camera.ICameraControl
         RaycastHit hit;
         Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, layerMask);
 
-        if (hit.distance > 5)
+        if (hit.distance > 2.5)
         {
             deltaPos.y = desiredDirectionY * Time.deltaTime * (desiredSpeed / verticalSpeedDivisor);
         }
